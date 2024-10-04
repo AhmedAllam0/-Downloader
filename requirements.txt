@@ -1,0 +1,12 @@
+import pkg_resources
+
+# احصل على جميع المكتبات المثبتة
+installed_packages = pkg_resources.working_set
+
+# قم بفتح ملف requirements.txt للكتابة
+with open('requirements.txt', 'w') as f:
+    for package in sorted(installed_packages, key=lambda x: x.project_name.lower()):
+        # اكتب اسم المكتبة والنسخة
+        f.write(f"{package.project_name}=={package.version}\n")
+
+print("تم إنشاء ملف requirements.txt بنجاح!")
